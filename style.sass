@@ -1,0 +1,43 @@
+$game-background: #141518
+$inactive-color: rgba(white, 0.2)
+$snake-color: rgba(white, 0.9)
+$food-color: #118AB2
+$transition-time: 200ms
+$dead-color: #F72C25
+
+body
+  margin: 0
+  box-sizing: border-box
+
+#app
+  background-color: $game-background
+  height: 100vh
+  display: flex
+  justify-content: center
+  align-items: center
+
+$cell-size: calc(75vmin / var(--max-size))
+
+.board
+  display: grid
+  grid-template-columns: repeat(var(--board-width), $cell-size)
+  grid-template-rows: repeat(var(--board-height), $cell-size)
+  grid-gap: 1px
+  perspective: 200px
+
+.cell
+  background-color: $inactive-color
+  width: 100%
+  height: 100%
+  transition: background $transition-time, box-shadow $transition-time, transform $transition-time
+  &.active
+    background-color: $snake-color
+    box-shadow: 0 0 10px $snake-color
+    transform: translateZ(5px)
+  &.food
+    background-color: $food-color    
+    box-shadow: 0 0 10px $food-color
+  &.dead
+    background-color: $dead-color    
+    box-shadow: 0 0 10px $dead-color
+    transform: translateZ(2px)
